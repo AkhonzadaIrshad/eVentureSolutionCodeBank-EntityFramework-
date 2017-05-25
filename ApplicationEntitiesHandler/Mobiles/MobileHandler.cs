@@ -12,17 +12,32 @@ namespace ApplicationEntitiesHandler.Mobiles
     {
         public void Add(Mobile t)
         {
-            throw new NotImplementedException();
+            ApplicationContext context = new ApplicationContext();
+            using (context)
+            {
+                context.Mobiles.Add(t);
+                context.SaveChanges();
+            }
         }
 
         public List<Mobile> GetAll()
         {
-            throw new NotImplementedException();
+            ApplicationContext context = new ApplicationContext();
+            using (context)
+            {
+                return (from p in context.Mobiles select p).ToList();
+            }
         }
 
         public Mobile GetById(int id)
         {
-            throw new NotImplementedException();
+            ApplicationContext context = new ApplicationContext();
+            using (context)
+            {
+                return (from p in context.Mobiles
+                        where p.Id == id
+                    select p).FirstOrDefault();
+            }
         }
 
         public void DeleteById(int id)

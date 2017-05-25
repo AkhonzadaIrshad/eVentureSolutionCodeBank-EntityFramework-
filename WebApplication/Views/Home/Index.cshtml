@@ -1,1 +1,11 @@
-﻿
+﻿@using ApplicationEntities.Products;
+@model List<Product>
+@foreach (Product product in Model)
+{
+    <li>
+        @product.Mobile.OperatingSystem
+    </li>
+    <li>
+    @product.Name
+    </li>
+}

@@ -160,6 +160,10 @@
       <Project>{0de10e56-fae4-4979-bb60-6ca1023ab8ca}</Project>
       <Name>ApplicationEntitiesHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ApplicationEntities\ApplicationEntities.csproj">
+      <Project>{15AAE88D-817D-4666-B955-BD056B10CAFF}</Project>
+      <Name>ApplicationEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

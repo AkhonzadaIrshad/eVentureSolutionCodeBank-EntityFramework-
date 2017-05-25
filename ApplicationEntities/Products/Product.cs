@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ApplicationEntities.Books;
 using ApplicationEntities.Mobiles;
 
 namespace ApplicationEntities.Products
@@ -24,9 +23,9 @@ namespace ApplicationEntities.Products
             get { return name; }
             set { name = value; }
         }
-        private string price;
+        private float price;
 
-        public string Price
+        public float Price
         {
             get { return price; }
             set { price = value; }
@@ -38,13 +37,7 @@ namespace ApplicationEntities.Products
             get { return mobile; }
             set { mobile = value; }
         }
-        private Book book;
-
-        public virtual Book Book
-        {
-            get { return book; }
-            set { book = value; }
-        }
+     
 
 
     }

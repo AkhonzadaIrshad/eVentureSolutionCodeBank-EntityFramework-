@@ -5,24 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using ApplicationEntities.Products;
 using ApplicationEntitiesHandler.Common;
-
+using System.Data.Entity;
 namespace ApplicationEntitiesHandler.Products
 {
-    class ProductHandler:IHandlerFunctions<Product>
+   public class ProductHandler:IHandlerFunctions<Product>
     {
         public void Add(Product t)
         {
-            throw new NotImplementedException();
+            ApplicationContext context=new ApplicationContext();
+            using (context)
+            {
+                context.Products.Add(t);
+                context.SaveChanges();
+            }
         }
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            ApplicationContext context = new ApplicationContext();
+            using (context)
+            {
+                return (from p in context.Products
+                        .Include(x=>x.Mobile)
+                        select p).ToList();
+            }
         }
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            ApplicationContext context = new ApplicationContext();
+            using (context)
+            {
+                return (from p in context.Products
+                        where p.Id==id
+                        select p).FirstOrDefault();
+            }
         }
 
         public void DeleteById(int id)
