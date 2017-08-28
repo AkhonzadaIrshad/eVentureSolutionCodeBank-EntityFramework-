@@ -1,0 +1,119 @@
+﻿@using OurClassLibrary
+@model FirstDayWithEF.Models.StudentModel
+@{
+    List<Student> students =(List<Student>)ViewBag.Students;
+}
+
+@using (Html.BeginForm("AddForm","Home",FormMethod.Post,new {enctype="multipart/form-data"})) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>StudentModel @{
+            if (ViewBag.Message != null)
+            {
+                <span>@ViewBag.Message</span>
+            }
+            }
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <input name="ImageUrl" type="file" value="Select Profile Image"/>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<div>
+    @if (students != null)
+    {
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Father Name
+                </th>
+                <th>
+                    Street Address
+                </th>
+                <th>
+                    Image
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (Student std in students)
+            {
+                <tr>
+                    <td>
+                        @std.Name
+                    </td><td>
+                        @std.FatherName
+                    </td><td>
+                        @std.Address.StreeAddress
+                    </td><td>
+                     <img  src="@Url.Content("~/Content/Images/"+std.ImageUrl)"/>  
+                    </td>
+                </tr>
+        
+            }
+
+            </tbody>
+        </table>
+
+
+        }
+</div>
